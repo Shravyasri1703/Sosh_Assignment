@@ -15,10 +15,18 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { CiSearch } from "react-icons/ci";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import logo from '../images/logo.png'
+import graph1 from '../images/graph_1.png'
+import graph2 from '../images/graph_2.png'
 
-export default function Home() { 
-  
+
+export default function Home() {
+  const today = new Date()
+  const day = String(today.getDate()).padStart(2, '0');
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const year = today.getFullYear();
+  const formattedDate = `${day}/${month}/${year}`; 
   return (
+    
    <> 
    <nav className="flex items-center justify-between h-14  px-4 lg:px-8 fixed w-full lg:left-[15%] lg:w-[85%] top-0 z-50 bg-white">
       <div className="flex flex-row items-center gap-2">
@@ -27,8 +35,8 @@ export default function Home() {
          type='String'
          name='search'
          placeholder='Search'
-         className='h-8 w-72 border-2 p-1 text-xs hidden lg:block'
-         
+         className='h-8 w-72 border-2 p-1 text-xs hidden lg:block rounded-lg'
+
         />
         <CiSearch  size={25}/>
       </div>
@@ -103,7 +111,9 @@ export default function Home() {
             <p className='text-sm font-light text-slate-500'>96 women</p>
           </div>
           <div className='flex flex-col h-full w-[50%] justify-around'>
-            <div>Grapgh</div>
+            <div>
+            <Image src={graph1} alt='' className='w-[90%]' />
+            </div>
             <div className=' bg-orange-100 p-1 flex items-center justify-center w-[80%]'>
               <p className='text-sm text-black'>+2% past month</p>
             </div>
@@ -112,15 +122,17 @@ export default function Home() {
 
         <div className='flex flex-row w-[90%] lg:w-[45%] h-full  border-2 border-slate-100 rounded-xl'>
           <div className='flex flex-col h-full w-[50%] pl-4 mt-3 '>
-            <h2 className='text-lg font-semibold text-blue-950'>Total Employees</h2>
-            <h1 className='text-5xl font-bold text-blue-950 mt-1 mb-3'>216</h1>
-            <p className='text-sm font-light text-slate-500'>120 men</p>
-            <p className='text-sm font-light text-slate-500'>96 women</p>
+            <h2 className='text-lg font-semibold text-blue-950'>Talent Request</h2>
+            <h1 className='text-5xl font-bold text-blue-950 mt-1 mb-3'>16</h1>
+            <p className='text-sm font-light text-slate-500'>6 men</p>
+            <p className='text-sm font-light text-slate-500'>10 women</p>
           </div>
           <div className='flex flex-col h-full w-[50%] justify-around'>
-            <div>Grapgh</div>
+            <div>
+              <Image src={graph2} alt='' className='w-[90%]'/>
+            </div>
             <div className=' bg-orange-100 p-1 flex items-center justify-center w-[80%]'>
-              <p className='text-sm text-black'>+2% past month</p>
+              <p className='text-sm text-black'>+5% past month</p>
             </div>
           </div>
         </div>
@@ -157,13 +169,15 @@ export default function Home() {
         <div className='lg:h-[50%] h-auto w-[90%] flex flex-col border-2 border-slate-200 rounded-xl mt-5 lg:mt-0'>
           <div className='flex flex-row items-center p-3 justify-between'>
             <h1 className='font-semibold'>Upcoming Schedule</h1>
-            <p className='text-xs text-slate-400'>Today , XX/XX/XX</p>
+            <p className='text-xs text-slate-400'>Today , <span className='font-bold text-red-500'>{formattedDate}</span></p>
           </div>
           <div className='flex flex-col items-center gap-3 p-2'>
+           <h4 className='text-sm font-semibold text-slate-500 justify-start'>Priority</h4> 
           <Schedule desc={"Review Applications"} />
+          <h4 className='text-sm font-semibold text-slate-500 justify-start'>Other</h4> 
           <Schedule desc={"Interview With Candidates"} />
           <Schedule desc={"Short meeting with IT department"} />
-          <button className='w-[60%] h-8 border-2 border-slate-200 text-orange-600 rounded-lg mb-3 mt-4'>Add new +</button>
+          
           </div>
         </div>
       </div>
